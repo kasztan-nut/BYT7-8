@@ -60,8 +60,7 @@ public class Money implements Comparable {
 	/**
 	 * Adds a Money to this Money, regardless of the Currency of the other Money.
 	 * @param other The Money that is being added to this Money.
-	 * @return A new Money with the same Currency as this Money, representing the added value of the two.
-	 * (Remember to convert the other Money before adding the amounts)
+	 * @return A new Money with the same Currency as this Money, representing the total of added value of the two.
 	 */
 	public Money add(Money other) {
         double nAmount=(this.universalValue()+other.universalValue())/this.getCurrency().getRate();
@@ -71,8 +70,7 @@ public class Money implements Comparable {
 	/**
 	 * Subtracts a Money from this Money, regardless of the Currency of the other Money.
 	 * @param other The money that is being subtracted from this Money.
-	 * @return A new Money with the same Currency as this Money, representing the subtracted value.
-	 * (Again, remember converting the value of the other Money to this Currency)
+	 * @return A new Money with the same Currency as this Money, representing the total of subtracting the other money from current subtracted value.
 	 */
 	public Money sub(Money other) {
 		double nAmount=(this.universalValue()-other.universalValue())/this.getCurrency().getRate();

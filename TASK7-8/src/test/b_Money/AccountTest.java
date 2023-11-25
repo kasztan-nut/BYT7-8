@@ -26,9 +26,8 @@ public class AccountTest {
 		SweBank.deposit("Alice", new Money(1000000, SEK));
 	}
 
-	@Test
-	public void testAddRemoveTimedPayment() {
-//		fail("Write test case here");
+	@Test //passed successfully
+	public void testAddRemoveTimedPayment() throws AccountDoesNotExistException{
 		testAccount.addTimedPayment("as",10000,1000000,new Money(100,SEK),SweBank,"Alice");
 		assertEquals("OK",1,testAccount.getSize());
 		testAccount.removeTimedPayment("as");
@@ -36,26 +35,23 @@ public class AccountTest {
 
 	}
 
-	@Test
+	@Test //passed successfully
 	public void testTimedPayment() throws AccountDoesNotExistException {
-//		fail("Write test case here");
 		testAccount.addTimedPayment("as", 1, 1, new Money(10000000, SEK), SweBank, "Alice");
 		assertTrue("OK", testAccount.timedPaymentExists("as"));
 		testAccount.tick();
 		assertEquals("OK", Optional.of(0),Optional.of(testAccount.getBalance().getAmount()));
 	}
 
-	@Test
+	@Test //passed successfully
 	public void testAddWithdraw() {
-//		fail("Write test case here");
 		testAccount.withdraw(new Money(10000000,SEK));
 		assertTrue("OK",testAccount.getBalance().getAmount()<10000000);
 
 	}
 
-	@Test
+	@Test //passed successfully
 	public void testGetBalance() {
-//		fail("Write test case here");
 		System.out.println(testAccount.getBalance());
 		assertTrue("OK", testAccount.getBalance().getAmount()==10000000&&testAccount.getBalance().getCurrency()==SEK);
 	}

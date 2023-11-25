@@ -25,27 +25,24 @@ public class BankTest {
 		DanskeBank.openAccount("Gertrud");
 	}
 
-	@Test
+	@Test //passed successfully
 	public void testGetName() {
-//		fail("Write test case here");
         assertEquals("OK", Optional.of("SweBank"),Optional.of(SweBank.getName()));
         assertEquals("OK", Optional.of("Nordea"),Optional.of(Nordea.getName()));
         assertEquals("OK", Optional.of("DanskeBank"),Optional.of(DanskeBank.getName()));
 
     }
 
-	@Test
+	@Test //passed successfully
 	public void testGetCurrency() {
-//		fail("Write test case here");
         assertEquals("OK", Optional.of(SEK),Optional.of(SweBank.getCurrency()));
         assertEquals("OK", Optional.of(SEK),Optional.of(Nordea.getCurrency()));
         assertEquals("OK", Optional.of(DKK),Optional.of(DanskeBank.getCurrency()));
 
     }
 
-	@Test
-	public void testOpenAccount() throws AccountExistsException, AccountDoesNotExistException {
-//		fail("Write test case here");
+	@Test //passed successfully
+	public void testOpenAccount() throws AccountExistsException{
         SweBank.openAccount("asd");
         assertThrows(AccountExistsException.class,()->{
             SweBank.openAccount("asd");
@@ -56,9 +53,8 @@ public class BankTest {
         assertEquals("OK",2,DanskeBank.getSize());
     }
 
-	@Test
+	@Test //passed successfully
 	public void testDeposit() throws AccountDoesNotExistException {
-//		fail("Write test case here");
 		assertThrows(AccountDoesNotExistException.class,()->{
 			SweBank.deposit("asd", new Money(1000,SEK));
 		});
@@ -67,9 +63,9 @@ public class BankTest {
 
 	}
 
-	@Test
+	@Test //passed successfully
 	public void testWithdraw() throws AccountDoesNotExistException {
-//		fail("Write test case here");
+
 		assertThrows(AccountDoesNotExistException.class,()->{
 			Nordea.withdraw("asd", new Money(1000,SEK));
 		});
@@ -79,9 +75,9 @@ public class BankTest {
 
 	}
 
-	@Test
+	@Test //passed successfully
 	public void testGetBalance() throws AccountDoesNotExistException {
-//		fail("Write test case here");
+
 		assertThrows(AccountDoesNotExistException.class,()->{
 			Nordea.getBalance("asd");
 		});
@@ -90,9 +86,8 @@ public class BankTest {
 		assertTrue("OK",Nordea.getBalance("Bob")==0);
 	}
 
-	@Test
+	@Test //passed successfully
 	public void testTransfer() throws AccountDoesNotExistException {
-//		fail("Write test case here");
 		SweBank.deposit("Bob", new Money(1000,SEK));
 		SweBank.transfer("Bob",Nordea,"Bob",new Money(1000,SEK));
 		assertTrue("OK", SweBank.getBalance("Bob")==0&Nordea.getBalance("Bob")==1000);
@@ -108,9 +103,8 @@ public class BankTest {
 		assertTrue("OK", SweBank.getBalance("Bob")==0&SweBank.getBalance("Ulrika")==1000);
 	}
 
-	@Test
+	@Test //passed successfully
 	public void testTimedPayment() throws AccountDoesNotExistException {
-////		fail("Write test case here");
 		SweBank.addTimedPayment("Bob","1",10000,20000,new Money(1000,SEK),Nordea,"Bob");
 		assertTrue("OK", SweBank.getAccount("Bob").timedPaymentExists("1"));
 		SweBank.removeTimedPayment("Bob","1");

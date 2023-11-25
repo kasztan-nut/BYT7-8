@@ -11,7 +11,7 @@ public class Currency {
 	 * This means that the rate of each currency defines its value compared to this universal currency.
 	 *
 	 * @param name The name of this Currency
-	 * @param rate The exchange rate of this Currency
+	 * @param rate The exchange rate of this Currency to 'universal currency'
 	 */
 	public Currency (String name, Double rate) {
 		this.name = name;
@@ -54,7 +54,7 @@ public class Currency {
 	/** Convert an amount from another Currency to an amount in this Currency
 	 *  @param amount Amount of the other Currency
 	 * @param othercurrency The other Currency
-     * @return
+     * @return value of this currency in the other currency
      */
 	public double valueInThisCurrency(Integer amount, Currency othercurrency) {
         return othercurrency.getRate()*amount/this.getRate();

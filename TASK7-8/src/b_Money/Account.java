@@ -6,11 +6,20 @@ public class Account {
 	private String name;
 	private Money content;
 	private Hashtable<String, TimedPayment> timedpayments = new Hashtable<String, TimedPayment>();
-
+	/**
+	 * New Account
+	 * @param name Name of this account
+	 * @param currency Base currency of this account
+	 */
 	public Account(String name, Currency currency) {
 		this.name=name;
 		this.content = new Money(0, currency);
 	}
+
+	/**
+	 * Get the amount of timed payments this account has added
+	 * @return amount of timed payments of this account
+	 */
 	public int getSize(){return timedpayments.size();}
 	/**
 	 * Add a timed payment
@@ -20,8 +29,10 @@ public class Account {
 	 * @param amount Amount of Money to transfer each payment
 	 * @param tobank Bank where receiving account resides
 	 * @param toaccount Id of receiving account
+	 * @throws AccountDoesNotExistException If destination account does not exist
 	 */
-	public void addTimedPayment(String id, Integer interval, Integer next, Money amount, Bank tobank, String toaccount) {
+	public void addTimedPayment(String id, Integer interval, Integer next, Money amount, Bank tobank, String toaccount) throws AccountDoesNotExistException {
+		tobank.getAccount(toaccount);
 		TimedPayment tp = new TimedPayment(interval, next, amount, this, tobank, toaccount);
 		timedpayments.put(id, tp);
 	}

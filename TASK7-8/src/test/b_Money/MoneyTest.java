@@ -27,9 +27,8 @@ public class MoneyTest {
 		SEKn100 = new Money(-10000, SEK);
 	}
 
-	@Test
+    @Test //passed successfully
 	public void testGetAmount() {
-//		fail("Write test case here");
         assertEquals("100.00", Optional.of(10000),Optional.of(SEK100.getAmount()));
         assertEquals("10.00", Optional.of(1000),Optional.of(EUR10.getAmount()));
         assertEquals("200.00", Optional.of(20000),Optional.of(SEK200.getAmount()));
@@ -39,9 +38,8 @@ public class MoneyTest {
         assertEquals("-100.00", Optional.of(-10000),Optional.of(SEKn100.getAmount()));
 	}
 
-	@Test
+    @Test //passed successfully
 	public void testGetCurrency() {
-//		fail("Write test case here");
         assertEquals("SEK", Optional.of(SEK),Optional.of(SEK100.getCurrency()));
         assertEquals("EUR", Optional.of(EUR),Optional.of(EUR10.getCurrency()));
         assertEquals("SEK", Optional.of(SEK),Optional.of(SEK200.getCurrency()));
@@ -51,9 +49,8 @@ public class MoneyTest {
         assertEquals("SEK", Optional.of(SEK),Optional.of(SEKn100.getCurrency()));
 	}
 
-	@Test
+    @Test //passed successfully
 	public void testToString() {
-//		fail("Write test case here");
         assertEquals("100.00 SEK", Optional.of(10000+" "+SEK.getName()),Optional.of(SEK100.toString()));
         assertEquals("10.00 EUR", Optional.of(1000+" "+EUR.getName()),Optional.of(EUR10.toString()));
         assertEquals("200.00SEK", Optional.of(20000+" "+SEK.getName()),Optional.of(SEK200.toString()));
@@ -63,9 +60,8 @@ public class MoneyTest {
         assertEquals("-100.00 SEK", Optional.of(-10000+" "+SEK.getName()),Optional.of(SEKn100.toString()));
 	}
 
-	@Test
+    @Test //passed successfully
 	public void testGlobalValue() {
-//		fail("Write test case here");
         assertEquals("OK", Optional.of(1500),Optional.of(SEK100.universalValue()));
         assertEquals("OK", Optional.of(1500),Optional.of(EUR10.universalValue()));
         assertEquals("OK", Optional.of(3000),Optional.of(SEK200.universalValue()));
@@ -75,9 +71,8 @@ public class MoneyTest {
         assertEquals("OK", Optional.of(-1500),Optional.of(SEKn100.universalValue()));
     }
 
-	@Test
+    @Test //passed successfully
 	public void testEqualsMoney() {
-//		fail("Write test case here");
         assertFalse("OK", (SEK100.equals(EUR0)));
         assertFalse("OK", (EUR10.equals(EUR0)));
         assertFalse("OK", (SEK200.equals(EUR0)));
@@ -87,21 +82,30 @@ public class MoneyTest {
         assertFalse("OK", (SEKn100.equals(EUR0)));
 	}
 
-	@Test
+    @Test //passed successfully
 	public void testAdd() {
-//		fail("Write test case here");
-
+        assertEquals("OK", Optional.of(3000),Optional.of(SEK100.add(EUR10).universalValue()));
+        assertEquals("OK", Optional.of(3000),Optional.of(EUR10.add(EUR10).universalValue()));
+        assertEquals("OK", Optional.of(4500),Optional.of(SEK200.add(EUR10).universalValue()));
+        assertEquals("OK", Optional.of(4500),Optional.of(EUR20.add(EUR10).universalValue()));
+        assertEquals("OK", Optional.of(1500),Optional.of(SEK0.add(EUR10).universalValue()));
+        assertEquals("OK", Optional.of(1500),Optional.of(EUR0.add(EUR10).universalValue()));
+        assertEquals("OK", Optional.of(0),Optional.of(SEKn100.add(EUR10).universalValue()));
 	}
 
-	@Test
+    @Test //passed successfully
 	public void testSub() {
-//		fail("Write test case here");
-
+        assertEquals("OK", Optional.of(0),Optional.of(SEK100.sub(EUR10).universalValue()));
+        assertEquals("OK", Optional.of(0),Optional.of(EUR10.sub(EUR10).universalValue()));
+        assertEquals("OK", Optional.of(1500),Optional.of(SEK200.sub(EUR10).universalValue()));
+        assertEquals("OK", Optional.of(1500),Optional.of(EUR20.sub(EUR10).universalValue()));
+        assertEquals("OK", Optional.of(-1500),Optional.of(SEK0.sub(EUR10).universalValue()));
+        assertEquals("OK", Optional.of(-1500),Optional.of(EUR0.sub(EUR10).universalValue()));
+        assertEquals("OK", Optional.of(-3000),Optional.of(SEKn100.sub(EUR10).universalValue()));
 	}
 
-	@Test
+    @Test //passed successfully
 	public void testIsZero() {
-//		fail("Write test case here");
         assertFalse("OK",(SEK100.isZero()));
         assertFalse("OK", (EUR10.isZero()));
         assertFalse("OK", SEK200.isZero());
@@ -111,9 +115,8 @@ public class MoneyTest {
         assertFalse("OK", (SEKn100.isZero()));
 	}
 
-	@Test
+    @Test //passed successfully
 	public void testNegate() {
-//		fail("Write test case here");
         assertEquals("OK", Optional.of(-1),Optional.of(SEK100.negate().getAmount()/SEK100.getAmount()));
         assertEquals("OK", Optional.of(-1),Optional.of(EUR10.negate().getAmount()/EUR10.getAmount()));
         assertEquals("OK", Optional.of(-1),Optional.of(SEK200.negate().getAmount()/SEK200.getAmount()));
@@ -124,7 +127,7 @@ public class MoneyTest {
 
     }
 
-	@Test
+    @Test //passed successfully
 	public void testCompareTo() {
         assertEquals("OK", Optional.of(0),Optional.of(SEK100.compareTo(EUR10)));
         assertEquals("OK", Optional.of(0),Optional.of(EUR10.compareTo(EUR10)));
